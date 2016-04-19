@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'magazines',
     'threads',
     'polls',
+    'whitenoise',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -144,7 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
@@ -152,6 +153,8 @@ STATICFILES_DIRS = (
 
 TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", "js",
                                "tinymce", "tinymce.min.js")
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 '''# Stripe environment variables
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', '<replace this with your stripe publishable code>')

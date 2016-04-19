@@ -24,6 +24,8 @@ from accounts.views import register, profile, login, logout, cancel_subscription
 from threads import views as forum_views
 from polls import api_views
 from threads import api_views as thread_api_views
+from django.conf.urls.static import static
+import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -72,4 +74,6 @@ urlpatterns = [
         name="update-poll"),
     url(r'post/delete/(?P<pk>[\d]+)/$', thread_api_views.PostDeleteView.as_view(),
         name='delete-poll')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+                                                                           document_root=settings.STATIC_ROOT)
+
